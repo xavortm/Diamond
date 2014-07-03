@@ -144,7 +144,7 @@ class Diamond_Print {
 	 * @param bool $show_comments Display or not comments count after title.
 	 * @since  v1.0.0
 	 */
-	public static function posts( $category_ID = 0 , $limit = 3, $offset = 1, $print_ul = true, $show_comments = true ) {
+	public static function posts( $category_ID = 0 , $limit = 3, $offset = 0, $print_ul = true, $show_comments = true ) {
 
 		if ( ! is_numeric( $category_ID ) ) {
 			self::message("Use ID for the category!");
