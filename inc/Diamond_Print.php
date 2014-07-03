@@ -231,9 +231,11 @@ class Diamond_Print {
 	 * its used to not use very big images when they are no needed, and by this speeds up the procces of
 	 * opening a page.
 	 * 
-	 * @since  v1.0.0
+	 * @param string 	$size 		The size of the thumbnail
+	 * @param bool 		$nodefault 	Use or not default image when no thumnnail is set.
+	 * @since v1.0.0
 	 */
-	public static function post_thumbnail( $size = '' ) {
+	public static function post_thumbnail( $size = '', $nodefault = true ) {
 
 		if( has_post_thumbnail() ) {
 
@@ -244,7 +246,7 @@ class Diamond_Print {
 
 			// Check if the current page need large image.
 			if( is_single() OR is_page() ) {
-				the_post_thumbnail('large'); 
+				the_post_thumbnail('medium'); 
 			}
 			else {
 				// Now for the small ones
@@ -253,10 +255,19 @@ class Diamond_Print {
 
 		} // has_post_thumbnail
 		else {
-			if( $size == '' ) 
-				$size = "large";
+
+			// Set the default image size
+			if( $size == '' ) {
+				$size = "medium";
+			}
+
+			// Do nothing if no default image will be used.
+			if( $nodefault ) {
+				return;
+			}
 			
-			$image_directory = get_template_directory_uri() . '/images/default_' . $size . '.png';
+			// Set the default thumbnail.
+			$image_directory = get_template_directory_uri() . '/img/default_' . $size . '.png';
 
 			// Print the default post thumbnail
 			echo "<img src='{$image_directory}' />";
