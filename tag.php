@@ -1,6 +1,8 @@
 <?php
 /**
- * Author template
+ * Tag template
+ * 
+ * Used to display archive-type pages for posts in a tag.
  *
  * @package WordPress
  */
@@ -10,7 +12,7 @@ get_header(); ?>
 <div id="main-content" class='wrapper'>
 	<div id="primary" class="site-content" role="main">
 
-		<h1 class="page-title"><?php echo get_the_author(); ?></h1>
+		<h1 class="archive-title"><?php printf( __( 'Tag Archives: %s', 'diamond' ), single_tag_title( '', false ) ); ?></h1>
 
 		<?php 
 		if ( have_posts() ) :

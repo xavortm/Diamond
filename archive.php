@@ -1,6 +1,12 @@
 <?php
 /**
- * Author template
+ * Archives template.
+ * 
+ * Pick whatever you want from the following cases of archives page, remove them all 
+ * or leave them its your chouse! 
+ * 
+ * The author title is not presented because of the existance of author page. 
+ * Same goes for category and tag.
  *
  * @package WordPress
  */
@@ -10,9 +16,23 @@ get_header(); ?>
 <div id="main-content" class='wrapper'>
 	<div id="primary" class="site-content" role="main">
 
-		<h1 class="page-title"><?php echo get_the_author(); ?></h1>
+		<?php if ( is_day() ) { ?>
+			<h1 class="archive-title">
+				<span><?php _e( 'Daily Archives:', 'diamond' ); ?></span> <?php the_time('l, F j, Y'); ?>
+			</h1>
 
+		<?php } elseif ( is_month() ) { ?>
+				<h1 class="archive-title">
+					<span><?php _e( 'Monthly Archives:', 'diamond' ); ?></span> <?php the_time('F Y'); ?>
+				</h1>
+
+		<?php } elseif ( is_year() ) { ?>
+				<h1 class="archive-title">
+					<span><?php _e( 'Yearly Archives:', 'diamond' ); ?></span> <?php the_time('Y'); ?>
+				</h1>
 		<?php 
+		} // Endif
+
 		if ( have_posts() ) :
 
 			// Start the Loop.
@@ -35,8 +55,7 @@ get_header(); ?>
 		endif; 
 		?>
 
-		<div class="navigation"><p><?php posts_nav_link(); ?></p></div>
-	</div><!-- /primary -->
+	</div><!-- /site-content -->
 
 	<aside id="secoundary" class='site-sidebar'>
 		<?php get_sidebar(); ?>
@@ -44,5 +63,4 @@ get_header(); ?>
 
 </div><!-- /main-content -->
 
-<?php 
-get_footer();
+<?php get_footer(); ?>
