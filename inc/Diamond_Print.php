@@ -46,24 +46,6 @@ class Diamond_Print {
 	}
 
 	/**
-	 * Print the author link.
-	 *
-	 * Because of the weird actions from the build in to the core function the_author(  ) i decided
-	 * to write my own function. This will print on the screen ( by the right way ) who is the author
-	 * and a link to the posts by the given author. No parameters are needed.
-	 *
-	 * @uses get_the_author_meta()
-	 * @uses get_the_author()
-	 * @uses get_author_posts_url()
-	 * @since 1.0.0
-	 * @return Displays the post author link and name.
-	 */
-	public static function author_link(){ 
-		$link = get_author_posts_url( get_the_author_meta( 'ID' ) );
-		echo '<a href="'. $link .'">'. get_the_author() .'</a>';
-	}
-
-	/**
 	 * Pagination. 
 	 * 
 	 * Print on the screen pagination links. Can be used from various
