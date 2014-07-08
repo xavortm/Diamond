@@ -37,6 +37,8 @@ get_header(); ?>
 		endif; 
 		?>
 
+		
+
 		<div class="navigation"><p><?php posts_nav_link(); ?></p></div>
 	</div><!-- /primary -->
 

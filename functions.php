@@ -133,6 +133,9 @@ class Diamond {
 		// Get the main stylesheet for the theme.
 		wp_enqueue_style( 'stylesheet', get_stylesheet_uri() );
 
+		// Enqueue Normalize.css
+		wp_enqueue_style( 'normalize', get_template_directory_uri() . '/css/normalize.css' );
+
 		// Include jQuery from WP Core
 		wp_enqueue_script( "jquery" );
 
