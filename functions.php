@@ -50,11 +50,6 @@ class Diamond {
 	 */
 	public function theme_setup() {
 
-		// Add after_setup_theme() for specific functions.
-		// The action call is here, because it fits more just for the theme
-		// setup, instead for all other actions during using of diamond.
-		add_action( 'after_setup_theme', array( $this, 'theme_setup_core' ) );
-
     	// Set content width for custom media information
     	if ( ! isset( $content_width ) ) $content_width = 900;
 
@@ -75,6 +70,20 @@ class Diamond {
 
 		// One of the required wordpress supports.
 		add_theme_support( 'automatic-feed-links' );
+
+		// Custom background color
+		add_theme_support( "custom-background", array(
+			'default-color'          => 'fff',
+			'default-position-x'     => 'center',
+			'default-repeat'         => 'no-repeat',
+		)); 
+
+		// Custom header support. Delete or fix it the way you want it!
+		add_theme_support( 'custom-header', array(
+			'default-text-color' 	=> 'fff',
+			'width' 				=> 1920,
+			'height'	 			=> 300,
+		) );
 
 		//  Support post-thubnails as well!
 		add_theme_support( 'post-thumbnails' );
@@ -141,6 +150,11 @@ class Diamond {
 
 		// My little script addings for jQuery use.
 		wp_enqueue_script( 'example-js', get_template_directory_uri() . '/js/diamond.js' );
+
+		// Adds JavaScript to pages with the comment form to support
+		// sites with threaded comments (when in use).
+		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
+			wp_enqueue_script( 'comment-reply' );
 		
 	}
 
