@@ -50,6 +50,11 @@ class Diamond {
 	 */
 	public function theme_setup() {
 
+		// Add after_setup_theme() for specific functions.
+		// The action call is here, because it fits more just for the theme
+		// setup, instead for all other actions during using of Subtle.
+		add_action( 'after_setup_theme', array( $this, 'theme_setup_core' ) );
+
     	// Set content width for custom media information
     	if ( ! isset( $content_width ) ) $content_width = 900;
 
@@ -240,5 +245,7 @@ class Diamond {
 	}
 }
 
+// Removing this line is like not having a functions.php file
 $Diamond = new Diamond;
+
 endif;
