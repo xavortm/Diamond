@@ -13,7 +13,7 @@
  */
 
 
-class Dimaond_Entry {
+class Diamond_Entry {
 
 	/**
 	 * Print the count of words the article has.
@@ -52,6 +52,66 @@ class Dimaond_Entry {
 	public static function author_link(){ 
 		$link = get_author_posts_url( get_the_author_meta( 'ID' ) );
 		echo '<a href="'. $link .'">'. get_the_author() .'</a>';
+	}
+
+	/**
+	 * Print the comments title for single pages. Its separated on another method for better read
+	 * insidte the comments template. ( + if its used elsewhere )
+	 *
+	 * @since  v1.0.0
+	 */
+	public static function comments_title() {
+		printf( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'thebigmag' ),
+				number_format_i18n( get_comments_number() ), '<span>' . get_the_title() . '</span>' );
+	}
+
+	/**
+	 * Post thumbnail calling. Shorted here, because we make many checks for wich page its called from. 
+	 * its used to not use very big images when they are no needed, and by this speeds up the procces of
+	 * opening a page.
+	 * 
+	 * @param string 	$size 		The size of the thumbnail
+	 * @param bool 		$nodefault 	Use or not default image when no thumnnail is set.
+	 * @since v1.0.0
+	 */
+	public static function post_thumbnail( $size = '', $nodefault = true ) {
+
+		if( has_post_thumbnail() ) {
+
+			if( isset( $size ) ) {
+				the_post_thumbnail( $size );
+				return;
+			}
+
+			// Check if the current page need large image.
+			if( is_single() OR is_page() ) {
+				the_post_thumbnail('medium'); 
+			}
+			else {
+				// Now for the small ones
+				the_post_thumbnail( 'medium' );
+			}
+
+		} // has_post_thumbnail
+		else {
+
+			// Set the default image size
+			if( $size == '' ) {
+				$size = "medium";
+			}
+
+			// Do nothing if no default image will be used.
+			if( $nodefault ) {
+				return;
+			}
+			
+			// Set the default thumbnail.
+			$image_directory = get_template_directory_uri() . '/img/default_' . $size . '.png';
+
+			// Print the default post thumbnail
+			echo "<img src='{$image_directory}' />";
+		}
+
 	}
 
 }

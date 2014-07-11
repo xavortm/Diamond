@@ -13,8 +13,6 @@ get_header(); ?>
 
 	<h1 class='page-title'><?php echo get_search_query() ?></h1>
 	
-	<?php if( have_posts() ) : ?>	
-
 	<?php 
 		if ( have_posts() ) :
 
@@ -45,6 +43,5 @@ get_header(); ?>
 
 </div><!-- /main-content -->
 
-<?php 
-get_footer();
+<?php get_footer(); ?>
 
