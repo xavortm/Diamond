@@ -243,6 +243,44 @@ class Diamond {
 	public function excerpt_more( $more ) {
 		return ' <a class="read-more" href="'. get_permalink( get_the_ID() ) . '">Read More</a>';
 	}
+
+	/**
+	 * Add custom style for the header. 
+	 * It look quite hard to read, but the main logic is to setup
+	 * custom styling when there is custom header image set.
+	 * 
+	 * @return void
+	 * @since v1.0.0
+	 */
+	function custom_header_css() {
+		$header_image = get_header_image();
+
+		// This will be printed as stylesheet in the header.
+		$output = '<style type="text/css">';
+
+		// Here you can write the custom CSS that will be set after the theme has
+		// changed the settings from the theme Customizer. Write the classes and
+		// ID's that will be affected from that change.
+		$output .= ".site-title a,";
+		$output .= ".site-description {";
+
+		// Check if the site title text should be displayed.
+		if( get_header_textcolor() == 'blank' ) {
+			$output .= 'visibility: hidden;'; 
+		}
+		else {
+			$output .= 'color: #' . get_header_textcolor() . ' !important';
+		}
+
+		// Close the title and desc styles.
+		$output .= "}";
+
+		// Close the style tag
+		$output .= '</style>';
+
+		// Print the final styles.
+		echo $output;
+	}
 }
 
 // Removing this line is like not having a functions.php file
