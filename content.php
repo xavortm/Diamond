@@ -38,5 +38,9 @@
 
 	<?php endif; ?>
 
-	<?php the_tags( '<footer class="entry-meta"><span class="tag-links">', '', '</span></footer>' ); ?>
+	<footer class="entry-meta">
+		<?php the_tags( '<span class="tag-links">', '', '</span>' ); ?>
+		<span class="meta-date"><?php the_time( get_option( 'date_format' ) ); ?></span>
+	</footer>
+
 </article><!-- #post-## -->

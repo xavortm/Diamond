@@ -26,7 +26,9 @@
 			) );
 		?>
 	</div><!-- .entry-content -->
-
-	<?php the_tags( '<footer class="entry-meta"><span class="tag-links">', '', '</span></footer>' ); ?>
-	<?php edit_post_link( __( 'Edit', 'diamond' ), '<span class="edit-link">', '</span>' ); ?>
+	
+	<footer class="entry-meta">
+		<?php the_tags( '<span class="tag-links">', '', '</span>' ); ?>
+		<?php edit_post_link( __( 'Edit', 'diamond' ), '<span class="edit-link">', '</span>' ); ?>
+	</footer>
 </article><!-- #post-## -->
