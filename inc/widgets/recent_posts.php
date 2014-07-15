@@ -9,8 +9,8 @@ class RecentPosts extends WP_Widget {
 
 		parent::__construct( 
 			'Diamond_recent_posts',
-			__('Diamond Recent Posts', 'thebigmag'),
-			array( 'description' => __( 'Display recent posts for Diamond theme.', 'thebigmag' ), )
+			__('Diamond Recent Posts', 'diamond'),
+			array( 'description' => __( 'Display recent posts for Diamond theme.', 'diamond' ), )
 		);
 
 	}
@@ -115,32 +115,32 @@ class RecentPosts extends WP_Widget {
 		// The validation for title
 		if ( isset( $instance[ 'title' ] ) ) 
 				$title = $instance[ 'title' ];
-		else  	$title = __( 'New title', 'thebigmag' );
+		else  	$title = __( 'New title', 'diamond' );
 		
 		// Validation for The amount of posts that will be displayed
 		if ( isset( $instance[ 'limit' ] ) ) 
 				$limit = $instance[ 'limit' ];
-		else  	$limit = __( '3', 'thebigmag' );
+		else  	$limit = __( '3', 'diamond' );
 
 		// Category ID - Should have better way, but for now this.
 		if ( isset( $instance[ 'cat_id' ] ) ) 
 				$cat_id = $instance[ 'cat_id' ];
-		else  	$cat_id = __( '0', 'thebigmag' );
+		else  	$cat_id = __( '0', 'diamond' );
 
 
 		?>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' , 'thebigmag'); ?></label> 
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' , 'diamond'); ?></label> 
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php _e( 'Posts Limit:' , 'thebigmag'); ?></label> 
+			<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php _e( 'Posts Limit:' , 'diamond'); ?></label> 
 			<input size='3' id="<?php echo $this->get_field_id( 'limit' ); ?>" name="<?php echo $this->get_field_name( 'limit' ); ?>" type="text" value="<?php echo esc_attr( $limit ); ?>" />
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'cat_id' ); ?>"><?php _e( 'Posts Category:', 'thebigmag' ); ?></label> 
+			<label for="<?php echo $this->get_field_id( 'cat_id' ); ?>"><?php _e( 'Posts Category:', 'diamond' ); ?></label> 
 			<input size='3' id="<?php echo $this->get_field_id( 'cat_id' ); ?>" name="<?php echo $this->get_field_name( 'cat_id' ); ?>" type="text" value="<?php echo esc_attr( $cat_id ); ?>" />
 		</p>
 		<?php 
